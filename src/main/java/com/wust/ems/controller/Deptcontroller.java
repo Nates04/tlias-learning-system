@@ -1,5 +1,6 @@
 package com.wust.ems.controller;
 
+import com.wust.ems.mapper.empmapper;
 import com.wust.ems.pojo.Dept;
 import com.wust.ems.pojo.Result;
 import com.wust.ems.service.deptservice;

@@ -49,4 +49,7 @@ public interface empmapper {
 
     @Select("select * from emp where username=#{username} and password=#{password}")
     public Emp login(@Param("username") String username, @Param("password") String password);
+
+    @Delete("delete from emp where dept_id=#{deptid}")
+    public void deletebydeptid(Integer deptid);
 }
