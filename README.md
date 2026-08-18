@@ -1,7 +1,7 @@
 # tlias-learning-system
 
 ## 项目简介
-基于 Spring Boot + MyBatis + hostman的tlias智能学习辅助系统后端。
+基于 Spring Boot + MyBatis + postman的tlias智能学习辅助系统后端。
 
 ## 技术栈
 - Java 11
