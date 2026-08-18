@@ -1,0 +1,29 @@
+##测试yml配置文件
+#server:
+#  port: 9000
+#
+##定一个对象/map集合
+#user:
+#  name: tom
+#  age: 20
+#  address: beijing
+#
+#map:
+#  ket: 1
+#  value: 001
+#
+##定义一个数组/List集合/set集合
+#arr:
+#  - 001
+#  - 002
+#  - 003
+#
+#list:
+#  - 001
+#  - 002
+#  - 003
+#
+#set:
+#  - 001
+#  - 002
+#  - 003

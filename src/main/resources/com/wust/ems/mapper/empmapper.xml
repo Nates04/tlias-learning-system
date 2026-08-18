@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--用xml文件执行SQL所需要要的依赖-->
+
+<mapper namespace="com.wust.ems.mapper.empmapper">
+
+    <!--条件查询-->
+    <select id="list" resultType="com.wust.ems.pojo.Emp">
+        select * from emp
+        <where>
+            <if test="name!=null and name!=''">
+               name like concat('%',#{name},'%')
+            </if>
+            <if test="gender!=null">
+               and gender=#{gender}
+            </if>
+            <if test="begin!=null">
+               and entrydate>=#{begin}
+            </if>
+            <if test="end!=null">
+                and #{end}>=entrydate
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+
+    <!--批量删除-->
+    <delete id="deletelist">
+        delete from emp
+        where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--修改员工信息-->
+    <update id="update">
+        update emp
+        <set>
+        <if test="username!=null and username!=''">
+            username=#{username},
+        </if>
+        <if test="password!=null">
+            password=#{password},
+        </if>
+        <if test="name!=null and name!=''">
+            name=#{name},
+        </if>
+        <if test="gender!=null">
+            gender=#{gender},
+        </if>
+        <if test="image!=null">
+            image=#{image},
+        </if>
+        <if test="job!=null">
+            job=#{job},
+        </if>
+        <if test="entrydate != null">
+            entrydate = #{entrydate},
+        </if>
+        <if test="deptId != null">
+            dept_id = #{deptId},
+        </if>
+        update_time = #{updateTime}
+        </set>
+        where id=#{id}
+    </update>
+
+</mapper>
