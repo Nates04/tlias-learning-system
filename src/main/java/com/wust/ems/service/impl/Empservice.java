@@ -2,6 +2,7 @@ package com.wust.ems.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.wust.ems.anno.Log;
 import com.wust.ems.mapper.empmapper;
 import com.wust.ems.pojo.Emp;
 import com.wust.ems.pojo.PageBean;
@@ -47,16 +48,19 @@ public class Empservice implements empservice {
         return pageBean;
     }
 
+    @Log
     @Override
     public void delete(Integer id) {
         empmapper.delete(id);
     }
 
+    @Log
     @Override
     public void deletelist(List<Integer> ids) {
         empmapper.deletelist(ids);
     }
 
+    @Log
     @Override
     public void add(Emp emp) {
         emp.setCreateTime(LocalDateTime.now());
@@ -71,6 +75,7 @@ public class Empservice implements empservice {
         empmapper.add(emp);
     }
 
+    @Log
     @Override
     public void update(Emp emp) {
         emp.setUpdateTime(LocalDateTime.now());

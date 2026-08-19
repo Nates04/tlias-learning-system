@@ -1,5 +1,6 @@
 package com.wust.ems.service;
 
+import com.wust.ems.anno.Log;
 import com.wust.ems.pojo.Emp;
 import com.wust.ems.pojo.PageBean;
 
@@ -15,6 +16,10 @@ public interface empservice {
   //pagehelper分页
   public PageBean list(Integer page, Integer pageSize, String name, Short gender, LocalDate birthday,LocalDate end);
 
+  public Emp select(Integer id);
+
+  public Emp login(String username,String password);
+
   public void delete(Integer id);
 
   public void deletelist(List<Integer> ids);
@@ -22,9 +27,5 @@ public interface empservice {
   public void add(Emp emp);
 
   public void update(Emp emp);
-
-  public Emp select(Integer id);
-
-  public Emp login(String username,String password);
 
 }

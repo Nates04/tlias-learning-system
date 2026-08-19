@@ -1,5 +1,6 @@
 package com.wust.ems.service.impl;
 
+import com.wust.ems.anno.Log;
 import com.wust.ems.mapper.deptmapper;
 import com.wust.ems.mapper.empmapper;
 import com.wust.ems.pojo.Dept;
@@ -30,6 +31,7 @@ public class Deptservice implements deptservice {
         return deptmapper.list();
     }
 
+    @Log
     //删除部门及其对应的员工
     @Override
     /*事务管理，默认情况下只有运行时异常才会进行事务回滚
@@ -52,6 +54,7 @@ public class Deptservice implements deptservice {
         }
     }
 
+    @Log
     //新增部门
     @Override
     public void insert(Dept dept) {
@@ -61,6 +64,7 @@ public class Deptservice implements deptservice {
         deptmapper.insert(dept);
     }
 
+    @Log
     //修改部门
     @Override
     public void update(Dept dept){

@@ -8,5 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface deptlogmapper {
 
     @Insert("insert into deptlog(create_time, description) values(#{createTime},#{description})")
-    public void insert(Deptlog deptlog);
+    public void insert(Deptlog log);
 }

@@ -18,7 +18,7 @@ public class Deptlogservice implements deptlogservice {
     //接上若大事务回滚会导致该事务无法记录数据
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
-    public void insert(Deptlog deptlog) {
-        deptlogmapper.insert(deptlog);
+    public void insert(Deptlog log) {
+        deptlogmapper.insert(log);
     }
 }
