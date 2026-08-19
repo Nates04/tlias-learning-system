@@ -29,6 +29,12 @@ public class Timeaspect {
 
         //方法运行后的操作
         // 记录结束时间
+
+
+
+
+
+
         Long endtime = System.currentTimeMillis();
         log.info(joinPoint.getSignature()+"方法总耗时：{} ms", endtime-starttime);
 
