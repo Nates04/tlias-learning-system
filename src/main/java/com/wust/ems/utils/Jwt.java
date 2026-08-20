@@ -5,12 +5,13 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
+
+//jwt令牌
 
 public class Jwt {
 
-    //密钥
+    //密钥，这个版本要大于32位
     private static String signKey="mySecretKey12345678901234567890";
     //JWT令牌的有效时间
     private static Long expire=3600000L;
@@ -19,7 +20,7 @@ public class Jwt {
     public static String getJWT(Map<String,Object> map){
         //密钥长度要大于32
         String jwt= Jwts.builder()//构建令牌
-                //签名算法，和密钥
+                //签名算法，密钥
                 .signWith(SignatureAlgorithm.HS256,signKey)
                 .setClaims(map)//自定义内容，载荷
                 .setExpiration(new Date(System.currentTimeMillis()+expire))//设置令牌过期时间
@@ -28,6 +29,7 @@ public class Jwt {
     }
 
     //解析JWT令牌
+    //Claims是JWT自带的类，是JWT的载荷（Payload）部分，包含JWT中存储的数据
     public static Claims parseJWT(String jwt){
         Claims claims=Jwts.parser()
                 .setSigningKey(signKey)//设置的密钥

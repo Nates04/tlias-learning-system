@@ -7,6 +7,9 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 //此类为拦截器的注册，filter为过滤器
+//拦截器用的是spring框架
+//配置方式WebMvcConfigurer
+//注册拦截器，需拦截的请求路径，不需拦截的请求路径
 
 @Configuration//配置类
 public class Webconfig implements WebMvcConfigurer {
@@ -15,12 +18,15 @@ public class Webconfig implements WebMvcConfigurer {
     @Autowired
     private Logincheckinterceptor logincheckinterceptor;
 
-    //配置注册拦截器
+    //注册并配置拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+                //配置拦截器
         registry.addInterceptor(logincheckinterceptor)
-                .addPathPatterns("/**")//拦截的路径
-                .excludePathPatterns("/login","/upload.html","/upload")//不拦截的路径
+                //需拦截的请求路径
+                .addPathPatterns("/**")
+                //不拦截的请求路径，白名单
+                .excludePathPatterns("/login","/upload.html","/upload")
         ;
     }
 }

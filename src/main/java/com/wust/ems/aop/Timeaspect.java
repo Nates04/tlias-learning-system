@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
-//记录操作时间
+//记录操作时间合并到另一个aspect类上去了
 
 @Slf4j
 @Component

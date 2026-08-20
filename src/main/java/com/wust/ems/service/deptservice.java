@@ -1,6 +1,5 @@
 package com.wust.ems.service;
 
-import com.wust.ems.anno.Log;
 import com.wust.ems.pojo.Dept;
 
 import java.util.List;

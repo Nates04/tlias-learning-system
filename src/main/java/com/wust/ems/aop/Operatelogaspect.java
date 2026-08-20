@@ -18,17 +18,20 @@ import java.time.LocalDateTime;
 //记录增删改查操作日志
 
 @Slf4j
+//声明这个类是AOP类，定义了增强方法(记录日志，统计耗时等)
 @Aspect
+//@Component是最基础的注解，任何类都可以用它注入到IOC容器，其他注解都是@Component的子注解
 @Component
 public class Operatelogaspect {
 
-    //获得当前请求的请求对象
+    //获得当前http请求的请求对象
     @Autowired
-    HttpServletRequest request;
+    private HttpServletRequest request;
 
     @Autowired
     private Operatelogservice operatelogservice;
 
+    //@Around指定AOP的作用范围
     @Around("@annotation(com.wust.ems.anno.Log)")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         //运行方法前操作，开始时间
@@ -36,7 +39,6 @@ public class Operatelogaspect {
 
         //运行方法
         Object obj=joinPoint.proceed();
-        System.out.println("=== 准备插入日志 ===");
 
         //运行方法后操作，记录日志
         // 操作人ID---JWT中携带
@@ -67,9 +69,10 @@ public class Operatelogaspect {
                 str,
                 totalTime
         );
-        //填写日志表
+        //填进mysql的日志表
         operatelogservice.insert(operatelog);
 
+        log.info(joinPoint.getSignature()+"方法总耗时：{} ms", totalTime);
         log.info("记录操日志:{}",operatelog);
 
         return obj;

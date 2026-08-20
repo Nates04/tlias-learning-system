@@ -1,16 +1,12 @@
 package com.wust.ems.controller;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.wust.ems.pojo.Emp;
 import com.wust.ems.pojo.PageBean;
 import com.wust.ems.pojo.Result;
 import com.wust.ems.service.impl.Empservice;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,13 +22,15 @@ public class Empcontroller {
     private Empservice empservice;
 
     //分页查询
+    //@RequestParam设置默认值
+    //@DateTimeFormat用正则表达式设置格式
     @GetMapping
     public Result list(@RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "10") Integer pageSize,
                        String name,
                        Short gender,
                        @DateTimeFormat(fallbackPatterns = "yyyy-MM-dd") LocalDate begin,
-                       @DateTimeFormat(fallbackPatterns = "yyyy-MM-dd")LocalDate end
+                       @DateTimeFormat(fallbackPatterns = "yyyy-MM-dd") LocalDate end
                        ) {
         /*设置默认值，可以用@RequestParam("")来代替
         if(page == null) page=1;

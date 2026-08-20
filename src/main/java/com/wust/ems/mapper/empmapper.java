@@ -2,7 +2,6 @@ package com.wust.ems.mapper;
 
 import com.wust.ems.pojo.Emp;
 import org.apache.ibatis.annotations.*;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.time.LocalDate;
 import java.util.List;

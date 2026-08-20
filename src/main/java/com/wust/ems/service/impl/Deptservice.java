@@ -31,6 +31,7 @@ public class Deptservice implements deptservice {
         return deptmapper.list();
     }
 
+    //自定义注解，用于AOP检查
     @Log
     //删除部门及其对应的员工
     @Override
@@ -49,7 +50,7 @@ public class Deptservice implements deptservice {
             //增加删除日志
             Deptlog deptlog = new Deptlog();
             deptlog.setCreateTime(LocalDateTime.now());
-            deptlog.setDescription("执行了删除操作，本次删除的是" + id + "号部门");
+            deptlog.setDescription("执行了删除操作，本次删除的是"+id+"号部门");
             deptlogservice.insert(deptlog);
         }
     }

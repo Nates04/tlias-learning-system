@@ -11,9 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//拦截器
-//该方法和filter方法二选一即可，都是用来完成所有指令都要完成的行为.如登陆校验等
-//使用拦截器时把filter上的注释给注释掉
+//这个类为拦截器的定义，还需要注册
+//该方法和拦截器的注册类Webconfig配套使用的，来完成所有指令都要完成的行为.如登陆校验等
 
 @Slf4j
 @Component
@@ -35,7 +34,7 @@ public class Logincheckinterceptor implements HandlerInterceptor {
     //整体方法和filter方法一致，只不过放行是直接return true即可
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info("拦截器拦截到请求");
+        //log.info("拦截器拦截到请求");
 
         //获取请求url
         String url=request.getRequestURI();

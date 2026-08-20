@@ -5,7 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-//自定义注解
+//自定义注解，可放在service层方法上做AOP标记
 
 //注解生效时间----在运行时生效
 @Retention(RetentionPolicy.RUNTIME)

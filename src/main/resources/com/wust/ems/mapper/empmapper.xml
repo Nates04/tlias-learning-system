@@ -4,13 +4,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--用xml文件执行SQL所需要要的依赖-->
 
+<!--namespace:对应mapper层类的位置-->
+<!--id：对应mapper层的方法名-->
+<!--resultType：对应实体类的位置-->
 <mapper namespace="com.wust.ems.mapper.empmapper">
 
     <!--条件查询-->
     <select id="list" resultType="com.wust.ems.pojo.Emp">
         select * from emp
+        <!--<where>可以自动过滤多的and-->
         <where>
+            <!--<if>可以做动态sql，按照前端传的数据判断执不执行-->
             <if test="name!=null and name!=''">
+                <!--concat拼接字符串，防止用${}出现sql注入问题-->
                name like concat('%',#{name},'%')
             </if>
             <if test="gender!=null">
@@ -23,14 +29,23 @@
                 and #{end}>=entrydate
             </if>
         </where>
-        order by update_time desc
+        order by update_time asc
     </select>
 
     <!--批量删除-->
     <delete id="deletelist">
         delete from emp
         where id in
+        <!--
+        <foreach>-循环执行
+        collection-集合名
+        item-集合里面的每个元素名
+        separator-分割符号
+        open-首符号
+        close-尾符号
+        -->
         <foreach collection="ids" item="id" separator="," open="(" close=")">
+            <!--集合中每个元素名-->
             #{id}
         </foreach>
     </delete>
@@ -38,6 +53,7 @@
     <!--修改员工信息-->
     <update id="update">
         update emp
+        <!--<set>动态sql，可以过滤多余的,-->
         <set>
         <if test="username!=null and username!=''">
             username=#{username},
